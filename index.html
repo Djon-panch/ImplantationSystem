@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система учета данных по имплантациям</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Система учета данных по имплантациям для клиники</h1>
+        <button onclick="location.href='#form'">Добавить новую запись</button>
+    </header>
+
+    <main>
+        <section id="form">
+            <h2>Форма ввода данных</h2>
+            <form id="dataForm">
+                <!-- Общие данные клиники -->
+                <div class="form-group">
+                    <label for="clinicName">Наименование клиники:</label>
+                    <input type="text" id="clinicName" name="clinicName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clinicAddress">Адрес клиники:</label>
+                    <input type="text" id="clinicAddress" name="clinicAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="scanFile">Скан анкеты:</label>
+                    <input type="file" id="scanFile" name="scanFile" accept=".pdf,.jpg,.png">
+                </div>
+                <div class="form-group">
+                    <label for="additionalFiles">Дополнительные файлы:</label>
+                    <input type="file" id="additionalFiles" name="additionalFiles[]" multiple accept=".pdf,.jpg,.png">
+                </div>
+
+                <!-- Данные врачей и пациентов -->
+                <div class="form-group">
+                    <label for="doctorName">ФИО врача:</label>
+                    <input type="text" id="doctorName" name="doctorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientName">ФИО пациента:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+
+                <!-- Выбор имплантационной системы -->
+                <div class="form-group">
+                    <label>Система имплантации:</label>
+                    <select id="implantSystem" name="implantSystem" required>
+                        <option value="">Выберите систему</option>
+                        <option value="anyridge">AnyRidge</option>
+                        <option value="anyone">AnyOne</option>
+                        <option value="st">ST</option>
+                        <option value="other">Другое</option>
+                    </select>
+                    <input type="text" id="otherSystem" name="otherSystem" placeholder="Укажите систему" style="display: none;">
+                </div>
+
+                <!-- Комментарии врача -->
+                <div class="form-group">
+                    <label for="comments">Комментарии врача:</label>
+                    <textarea id="comments" name="comments"></textarea>
+                </div>
+
+                <!-- Кнопки управления -->
+                <div class="form-group">
+                    <button type="submit">Сохранить</button>
+                    <button type="reset">Очистить форму</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
