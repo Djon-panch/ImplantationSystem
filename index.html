@@ -1,77 +1,179 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Система учета данных по имплантациям</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Dent+Megagen</title>
+  <style>
+    /* Общие стили */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Шапка сайта */
+    header {
+      background-color: #007bff; /* Синий цвет */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Форма */
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .optional {
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .error {
+      border-color: red;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .other-system {
+      display: none;
+      margin-top: -16px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Система учета данных по имплантациям для клиники</h1>
-        <button onclick="location.href='#form'">Добавить новую запись</button>
-    </header>
+  <!-- Шапка сайта -->
+  <header>
+    Global Dent+Megagen
+  </header>
 
-    <main>
-        <section id="form">
-            <h2>Форма ввода данных</h2>
-            <form id="dataForm">
-                <!-- Общие данные клиники -->
-                <div class="form-group">
-                    <label for="clinicName">Наименование клиники:</label>
-                    <input type="text" id="clinicName" name="clinicName" required>
-                </div>
-                <div class="form-group">
-                    <label for="clinicAddress">Адрес клиники:</label>
-                    <input type="text" id="clinicAddress" name="clinicAddress" required>
-                </div>
-                <div class="form-group">
-                    <label for="scanFile">Скан анкеты:</label>
-                    <input type="file" id="scanFile" name="scanFile" accept=".pdf,.jpg,.png">
-                </div>
-                <div class="form-group">
-                    <label for="additionalFiles">Дополнительные файлы:</label>
-                    <input type="file" id="additionalFiles" name="additionalFiles[]" multiple accept=".pdf,.jpg,.png">
-                </div>
+  <!-- Форма -->
+  <form id="implantForm">
+    <!-- № заявки -->
+    <label for="requestNumber">№ заявки <span class="optional">(необязательно)</span>:</label>
+    <input type="text" id="requestNumber" name="requestNumber">
 
-                <!-- Данные врачей и пациентов -->
-                <div class="form-group">
-                    <label for="doctorName">ФИО врача:</label>
-                    <input type="text" id="doctorName" name="doctorName" required>
-                </div>
-                <div class="form-group">
-                    <label for="patientName">ФИО пациента:</label>
-                    <input type="text" id="patientName" name="patientName" required>
-                </div>
+    <!-- Общие данные клиники -->
+    <label for="clinicName">Наименование клиники *:</label>
+    <input type="text" id="clinicName" name="clinicName" required>
 
-                <!-- Выбор имплантационной системы -->
-                <div class="form-group">
-                    <label>Система имплантации:</label>
-                    <select id="implantSystem" name="implantSystem" required>
-                        <option value="">Выберите систему</option>
-                        <option value="anyridge">AnyRidge</option>
-                        <option value="anyone">AnyOne</option>
-                        <option value="st">ST</option>
-                        <option value="other">Другое</option>
-                    </select>
-                    <input type="text" id="otherSystem" name="otherSystem" placeholder="Укажите систему" style="display: none;">
-                </div>
+    <label for="clinicAddress">Адрес клиники *:</label>
+    <input type="text" id="clinicAddress" name="clinicAddress" required>
 
-                <!-- Комментарии врача -->
-                <div class="form-group">
-                    <label for="comments">Комментарии врача:</label>
-                    <textarea id="comments" name="comments"></textarea>
-                </div>
+    <label for="scanFile">Скан анкеты:</label>
+    <input type="file" id="scanFile" name="scanFile" accept=".pdf,.jpg,.png">
 
-                <!-- Кнопки управления -->
-                <div class="form-group">
-                    <button type="submit">Сохранить</button>
-                    <button type="reset">Очистить форму</button>
-                </div>
-            </form>
-        </section>
-    </main>
+    <label for="additionalFiles">Дополнительные файлы:</label>
+    <input type="file" id="additionalFiles" name="additionalFiles[]" multiple accept=".pdf,.jpg,.png">
 
-    <script src="script.js"></script>
+    <!-- Данные врачей и пациентов -->
+    <label for="doctorName">ФИО врача *:</label>
+    <input type="text" id="doctorName" name="doctorName" required>
+
+    <label for="patientName">ФИО пациента *:</label>
+    <input type="text" id="patientName" name="patientName" required>
+
+    <!-- Даты -->
+    <label for="installationDate">Дата установки *:</label>
+    <input type="date" id="installationDate" name="installationDate" required>
+
+    <label for="removalDate">Дата удаления <span class="optional">(необязательно)</span>:</label>
+    <input type="date" id="removalDate" name="removalDate">
+
+    <!-- Система имплантации -->
+    <label>Система имплантации *:</label>
+    <div>
+      <label><input type="radio" name="implantSystem" value="AnyRidge" required> AnyRidge</label>
+      <label><input type="radio" name="implantSystem" value="AnyOne"> AnyOne</label>
+      <label><input type="radio" name="implantSystem" value="ST"> ST</label>
+      <label><input type="radio" name="implantSystem" value="BlueDiamond"> BlueDiamond</label>
+      <label><input type="radio" name="implantSystem" value="Other"> Другое</label>
+    </div>
+    <div class="other-system">
+      <label for="otherSystemInput">Укажите систему *:</label>
+      <input type="text" id="otherSystemInput" name="otherSystemInput">
+    </div>
+
+    <!-- Комментарии врача -->
+    <label for="comments">Комментарии врача:</label>
+    <textarea id="comments" name="comments" rows="4"></textarea>
+
+    <!-- Кнопки управления -->
+    <button type="submit">Сохранить</button>
+    <button type="reset">Очистить форму</button>
+  </form>
+
+  <script>
+    // Показать/скрыть поле "Другое"
+    const otherSystemRadio = document.querySelector('input[value="Other"]');
+    const otherSystemField = document.querySelector('.other-system');
+    const otherSystemInput = document.getElementById('otherSystemInput');
+
+    otherSystemRadio.addEventListener('change', () => {
+      if (otherSystemRadio.checked) {
+        otherSystemField.style.display = 'block';
+        otherSystemInput.setAttribute('required', true);
+      } else {
+        otherSystemField.style.display = 'none';
+        otherSystemInput.removeAttribute('required');
+      }
+    });
+
+    // Валидация формы
+    document.getElementById('implantForm').addEventListener('submit', function (e) {
+      let isValid = true;
+
+      // Проверка обязательных полей
+      const requiredFields = document.querySelectorAll('[required]');
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          isValid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      });
+
+      if (!isValid) {
+        e.preventDefault();
+        alert('Пожалуйста, заполните все обязательные поля.');
+      }
+    });
+  </script>
 </body>
 </html>
